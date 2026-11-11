@@ -8,7 +8,7 @@
 set -eo pipefail
 
 BRANCH="${INFINITUM_APPLE_BRANCH:-feat/apple-apps}"
-NEXUS_BRANCH="${INFINITUM_NEXUS_BRANCH:-fix/cumulus-apple-imports}"
+NEXUS_BRANCH="${INFINITUM_NEXUS_BRANCH:-main}"
 SRC="$HOME/src"
 DEST="$HOME/Applications/Infinitum"
 LOG="$SRC/infinitum-apple-build.log"
