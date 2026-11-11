@@ -5,7 +5,7 @@
 #
 # Needs Xcode 16.3 or newer (App Store). Asks for no passwords and signs ad hoc (no Apple ID).
 # Re-running is safe: it updates the sources and replaces only the apps it builds.
-set -euo pipefail
+set -eo pipefail
 
 BRANCH="${INFINITUM_APPLE_BRANCH:-feat/apple-apps}"
 NEXUS_BRANCH="${INFINITUM_NEXUS_BRANCH:-fix/cumulus-apple-imports}"
