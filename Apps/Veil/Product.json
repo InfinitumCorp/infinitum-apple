@@ -1,0 +1,18 @@
+{
+  "id": "veil",
+  "name": "VEIL</>™",
+  "tagline": "Infinitum's free, Tor-first secure browser.",
+  "clientId": "veil",
+  "home": "https://infinitumveil.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.infinitumveil.app"
+  ],
+  "signIn": "embedded",
+  "analytics": false,
+  "handoffFragment": false
+}

@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "default_locale": "en",
+  "name": "__MSG_name__",
+  "short_name": "__MSG_short_name__",
+  "version": "0.4.0",
+  "description": "__MSG_description__",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "__MSG_action_title__",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_popup": "src/panel.html"
+  },
+  "options_page": "src/options.html",
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://rchtch.app/*",
+    "https://id.cumuluscloud.app/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://rchtch.app https://id.cumuluscloud.app"
+  },
+  "browser_specific_settings": {
+    "safari": {
+      "strict_min_version": "17.0"
+    }
+  }
+}

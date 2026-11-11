@@ -1,0 +1,18 @@
+{
+  "id": "firm-wallet",
+  "name": "$FIRM Wallet™",
+  "tagline": "Self-custody for Solana, Ethereum and Base, with a built-in exchange for every Infinitum product token.",
+  "clientId": "firm-wallet",
+  "home": "https://firmwallet.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.firmwallet.app"
+  ],
+  "signIn": "embedded",
+  "analytics": true,
+  "handoffFragment": false
+}

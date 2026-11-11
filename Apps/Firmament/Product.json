@@ -1,0 +1,18 @@
+{
+  "id": "firmament",
+  "name": "$Firmament Network™",
+  "tagline": "$FIRM™ settles every Infinitum product token.",
+  "clientId": "firmament",
+  "home": "https://firmnetwork.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.firmnetwork.app"
+  ],
+  "signIn": "embedded",
+  "analytics": true,
+  "handoffFragment": false
+}

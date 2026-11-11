@@ -1,0 +1,18 @@
+{
+  "id": "metatron",
+  "name": "METATRON¹⁰⁰™",
+  "tagline": "Every Infinitum product in one AI command center for your life, your home and your business.",
+  "clientId": "metatron",
+  "home": "https://mttrn.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.mttrn.app"
+  ],
+  "signIn": "embedded",
+  "analytics": true,
+  "handoffFragment": false
+}
