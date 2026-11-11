@@ -17,7 +17,7 @@ public enum Base64URL {
         return Data(base64Encoded: s)
     }
 
-    static func random(_ count: Int) -> String {
+    public static func random(_ count: Int) -> String {
         var bytes = [UInt8](repeating: 0, count: count)
         let status = SecRandomCopyBytes(kSecRandomDefault, count, &bytes)
         precondition(status == errSecSuccess, "No secure random bytes")
