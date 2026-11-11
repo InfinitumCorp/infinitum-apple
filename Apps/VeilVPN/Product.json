@@ -1,0 +1,18 @@
+{
+  "id": "veil-vpn",
+  "name": "VEIL</>™ VPN",
+  "tagline": "Free, private, shared. No logs, tracker blocking and Tor over VPN.",
+  "clientId": "veil-vpn",
+  "home": "https://infinitumveilvpn.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.infinitumveilvpn.app"
+  ],
+  "signIn": "embedded",
+  "analytics": false,
+  "handoffFragment": false
+}

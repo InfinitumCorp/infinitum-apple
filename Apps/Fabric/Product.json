@@ -1,0 +1,18 @@
+{
+  "id": "fabric",
+  "name": "FabriC++™",
+  "tagline": "Secure communications: encrypted messaging, voice and video with private AI.",
+  "clientId": "fabric",
+  "home": "https://infinitumfabric.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.infinitumfabric.app"
+  ],
+  "signIn": "embedded",
+  "analytics": true,
+  "handoffFragment": false
+}

@@ -1,0 +1,91 @@
+# Every Infinitum Apple app: InfinitumKit unit tests, then each product for macOS (ad-hoc signed,
+# uploaded as a zip you can run on a Mac) and for the iOS Simulator. No certificates, profiles or
+# secrets: App Store signing waits on the Apple Developer enrollment.
+name: apple
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: apple-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Public Amplitude API key (repo variable). Empty = analytics off. Never the secret key.
+  AMPLITUDE_API_KEY: ${{ vars.AMPLITUDE_API_KEY }}
+
+jobs:
+  apple:
+    name: Test and build all apps
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Xcode
+        run: |
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)"
+          xcodebuild -version
+
+      - name: SwiftPM cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Packages/InfinitumKit/.build
+            build/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('Packages/InfinitumKit/Package.swift', 'Packages/InfinitumKit/Package.resolved') }}
+
+      - name: InfinitumKit tests
+        working-directory: Packages/InfinitumKit
+        run: swift test
+
+      - name: Generate the Xcode project
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen generate
+
+      - name: Build macOS (ad-hoc signed)
+        run: |
+          set -o pipefail
+          mkdir -p dist
+          for app in $(python3 -c "import json,glob;print(' '.join(sorted(p.split('/')[1] for p in glob.glob('Apps/*/Product.json'))))"); do
+            echo "::group::$app macOS"
+            xcodebuild -project Infinitum.xcodeproj -scheme "$app" \
+              -destination 'generic/platform=macOS' -configuration Release \
+              -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+              CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= \
+              AMPLITUDE_API_KEY="$AMPLITUDE_API_KEY" \
+              build -quiet
+            ditto -c -k --keepParent "build/Build/Products/Release/$app.app" "dist/$app-macOS.zip"
+            echo "::endgroup::"
+          done
+
+      - name: Build iOS Simulator
+        run: |
+          set -o pipefail
+          for app in $(python3 -c "import json,glob;print(' '.join(sorted(p.split('/')[1] for p in glob.glob('Apps/*/Product.json'))))"); do
+            echo "::group::$app iOS"
+            xcodebuild -project Infinitum.xcodeproj -scheme "$app" \
+              -destination 'generic/platform=iOS Simulator' -configuration Debug \
+              -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+              CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= DEVELOPMENT_TEAM= \
+              AMPLITUDE_API_KEY="$AMPLITUDE_API_KEY" \
+              build -quiet
+            echo "::endgroup::"
+          done
+
+      - name: Check the Safari extension is inside :\ARCHITECT\
+        run: |
+          test -f "build/Build/Products/Release/Architect.app/Contents/PlugIns/ArchitectSafari.appex/Contents/Resources/manifest.json"
+          test -f "build/Build/Products/Debug-iphonesimulator/Architect.app/PlugIns/ArchitectSafari.appex/manifest.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: infinitum-macos-apps
+          path: dist/*.zip
+          retention-days: 14

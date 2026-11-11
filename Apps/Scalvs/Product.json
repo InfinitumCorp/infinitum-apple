@@ -1,0 +1,20 @@
+{
+  "id": "scalvs",
+  "name": "SCALVS.ai",
+  "tagline": "Build agents that research, write, code, sell and operate for you.",
+  "clientId": "scalvs",
+  "home": "https://scalvs.app",
+  "mirrors": [
+    "https://ru.scalvs.app"
+  ],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.scalvs.app"
+  ],
+  "signIn": "embedded",
+  "analytics": true,
+  "handoffFragment": false
+}

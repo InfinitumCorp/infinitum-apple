@@ -1,0 +1,23 @@
+{
+  "id": "architect",
+  "name": ":\\ARCHITECT\\™",
+  "tagline": "Describe an outcome. Architect plans it, does it, and proves it is done.",
+  "clientId": "architect",
+  "home": "https://rchtch.app",
+  "mirrors": [],
+  "issuers": [
+    "https://id.cumuluscloud.app",
+    "https://ru.id.cumuluscloud.app"
+  ],
+  "inAppHosts": [
+    "www.rchtch.app",
+    "cndctr.app",
+    "www.cndctr.app"
+  ],
+  "signIn": "system",
+  "analytics": true,
+  "handoffFragment": true,
+  "returnURL": "https://rchtch.app/cid-return?to=desktop",
+  "callbackScheme": "architect",
+  "safariExtension": "app.infinitum.architect.safari"
+}
